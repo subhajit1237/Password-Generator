@@ -51,7 +51,7 @@ function getSpecialChar() {
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const length = lengthElement.value;
-    let generatedPassword = '';
+    let generatedPassword = "";
     const checkedFields = fieldsArray.filter(({ field }) => field.checked)
 
     for(i=0; i<length; i++) {
@@ -62,3 +62,13 @@ form.addEventListener('submit', (e) => {
 
     resultElement.value = generatedPassword;
 })
+
+clipboardEl.addEventListener('click', (e) => {
+    const text = resultElement.value;
+    if(text) {
+        await navigator.clipboard.writeText(text);
+        alert("Copied to your clipboard");
+    } else {
+        alert("No password to copy");
+    }
+});
